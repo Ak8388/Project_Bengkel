@@ -66,6 +66,18 @@ func (database db) DeleteService(param int64) error {
 		return err
 	}
 
+	err = database.Db.Where("id_service=?", param).Delete(&entity.ServiceBerkala{}).Error
+
+	if err != nil {
+		return err
+	}
+
+	err = database.Db.Where("id_service=?", param).Delete(&entity.ServiceUmum{}).Error
+
+	if err != nil {
+		return err
+	}
+
 	err = database.Db.Where("id=?", param).Delete(&data).Error
 
 	if err != nil {

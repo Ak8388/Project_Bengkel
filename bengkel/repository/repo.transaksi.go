@@ -109,7 +109,7 @@ func (db dbRepos) UpdateTserv(tsp user.TransaksiService, param string) error {
 
 func (db dbRepos) DeleteTserv(id int64) error {
 
-	if err := db.Db.Where("id = ?", id).Error; err != nil {
+	if err := db.Db.Where("id = ?", id).Delete(&user.TransaksiService{}).Error; err != nil {
 		return err
 	}
 

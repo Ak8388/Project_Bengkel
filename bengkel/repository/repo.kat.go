@@ -67,7 +67,13 @@ func (db dbkat) DeleteKat(param int64) error {
 		return errors.New("Data Not Found")
 	}
 
-	err = db.Db.Where("id = ?", param).Updates(&val).Error
+	err = db.Db.Where("id_kat = ?", param).Delete(&entity.SparePart{}).Error
+
+	if err != nil {
+		return err
+	}
+
+	err = db.Db.Where("id = ?", param).Delete(&val).Error
 
 	if err != nil {
 		return err

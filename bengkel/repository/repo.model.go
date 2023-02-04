@@ -77,7 +77,13 @@ func (db database) UpdateModel(model entity.ModelKendaraan, param string) error 
 }
 
 func (db database) DeleteModel(id int64) error {
-	err := db.Db.Where("id = ?", id).Delete(&entity.ModelKendaraan{}).Error
+	err := db.Db.Where("id_model = ?", id).Delete(&entity.SparePart{}).Error
+
+	if err != nil {
+		return err
+	}
+
+	err = db.Db.Where("id = ?", id).Delete(&entity.ModelKendaraan{}).Error
 
 	if err != nil {
 		return err
