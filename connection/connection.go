@@ -33,5 +33,6 @@ func Connection() *gorm.DB {
 	}
 
 	db.AutoMigrate(&entity.MerkKendaraan{}, &entity.Service{}, &entity.ModelKendaraan{}, &entity.ServiceBerkala{}, &entity.ServiceUmum{}, &entity.Kategori{}, &entity.SparePart{}, &user.TransaksiService{}, &user.TransaksiSparepart{})
+	db.AutoMigrate(&user.Regist{})
 	return db
 }

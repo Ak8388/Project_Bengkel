@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 	"project_bengkel/bengkel"
+	"project_bengkel/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,13 +16,13 @@ func NewHandlersTrans(us bengkel.UsecaseTrans, r *gin.RouterGroup) {
 	v2 := r.Group("Transaksi")
 
 	v3 := v2.Group("Servicess")
-	v3.GET("", uc.GetAllTserv)
+	v3.GET("", middleware.Token(), uc.GetAllTserv)
 	v3.POST("", uc.CreateTserv)
 	v3.PUT(":id", uc.UpdateTserv)
 	v3.DELETE("", uc.DeleteTserv)
 
 	v4 := v2.Group("Spareparts")
-	v4.GET("", uc.GetAllTsp)
+	v4.GET("", middleware.Token(), uc.GetAllTsp)
 	v4.POST("", uc.CreateTsp)
 	v4.PUT(":id", uc.UpdateTsp)
 	v4.DELETE("", uc.DeleteTsp)

@@ -1,6 +1,9 @@
 package router
 
 import (
+	authhandler "project_bengkel/auth/authhandler"
+	authRepos "project_bengkel/auth/authrepo"
+	authusecase "project_bengkel/auth/authusecase"
 	"project_bengkel/bengkel/handlers"
 	"project_bengkel/bengkel/repository"
 	"project_bengkel/bengkel/usecase"
@@ -16,6 +19,12 @@ type Routes struct {
 
 func (r Routes) Routers() {
 	v1 := r.R.Group("Api")
+
+	//AuthRoutes
+	repoAuth := authRepos.NewReposAuth(r.Db)
+	usecaseAuth := authusecase.NewUsecaseAuth(repoAuth)
+	authhandler.NewHandlerAuth(usecaseAuth, v1)
+
 	//Service Routers
 	repo := repository.NewRepo(r.Db)
 	use := usecase.NewUsecaseService(repo)

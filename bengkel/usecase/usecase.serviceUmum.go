@@ -28,6 +28,7 @@ func (rp repos) GetAllSU(ctx *gin.Context) ([]entity.ServiceUmum, error) {
 
 	return result, nil
 }
+
 func (rp repos) CreateSU(ctx *gin.Context) error {
 	var su entity.ServiceUmum
 
@@ -45,6 +46,7 @@ func (rp repos) CreateSU(ctx *gin.Context) error {
 
 	return nil
 }
+
 func (rp repos) UpdateSU(ctx *gin.Context) error {
 	var su entity.ServiceUmum
 	var param = ctx.Param("id")
@@ -70,6 +72,7 @@ func (rp repos) UpdateSU(ctx *gin.Context) error {
 
 	return nil
 }
+
 func (rp repos) DeleteSU(ctx *gin.Context) error {
 	var inp struct {
 		Id json.Number
